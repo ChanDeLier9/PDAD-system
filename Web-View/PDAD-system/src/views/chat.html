@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天</title>
+    <link rel="stylesheet" href="./chat.css">
+</head>
+<body>
+<div class="chat-container">
+    <div class="chat-header">
+        <button class="back-btn" onclick="location.href='./chat-contacts.html'">← 返回</button>
+        <h2 id="chatTitle">聊天</h2>
+    </div>
+    
+    <div class="chat-messages" id="chatMessages">
+        <!-- 聊天消息将通过JavaScript动态加载 -->
+    </div>
+    
+    <div class="chat-input-area">
+        <div class="input-container">
+            <textarea id="messageInput" placeholder="输入消息..." rows="1"></textarea>
+            <button id="sendBtn" onclick="sendMessage()">发送</button>
+        </div>
+    </div>
+</div>
+
+<script src="./chat.js"></script>
+</body>
+</html>

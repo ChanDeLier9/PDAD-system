@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加患者病历</title>
+    <link rel="stylesheet" href="./create.css">
+    <link rel="stylesheet" href="./iconfont/font_f3bf40xattr/iconfont.css">
+    <script src="create.js" defer></script>
+</head>
+<body>
+<div class="myintro">
+    <i class="iconfont icon-fanhui" onClick="location.href='./mine.html'"></i>
+    <button class="launch" onClick="location.href='./login.html'">退出登录</button>
+    <span><img src="../assets/touxiang.png" alt="头像"></span>
+    <div class="name">NAME</div>
+    <div class="hospital">医院认证</div>
+    <button class="mine" onclick="location.href='./mine.html'">个人中心</button>
+</div>
+
+<!-- Table Header -->
+<table border="1" cellspacing="0">
+    <thead>
+    <tr>
+        <th class="id">患者ID</th>
+        <th class="name">患者姓名</th>
+        <th class="phone">电话号码</th>
+        <th class="sex">性别</th>
+        <th class="email">邮箱</th>
+        <th class="age">年龄</th>
+        <th class="create">添加病历</th>
+    </tr>
+    </thead>
+    <tbody id="patient-table-body">
+    <!-- Patient data will be inserted here -->
+    </tbody>
+</table>
+
+<!-- Search Box for Patient Name (Always Visible) -->
+<div id="search-container">
+    <input type="text" id="search-name" placeholder="请输入患者姓名">
+    <button onclick="searchPatient()">搜索</button>
+</div>
+
+</body>
+</html>

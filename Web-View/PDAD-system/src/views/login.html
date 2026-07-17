@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Register</title>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="login.js" defer></script>
+
+    <style>
+        /* =========================
+           背景渐变 + 彩色 blob（完全照你那套）
+           ========================= */
+
+        .card {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2000;
+            border-radius: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card__content {
+            background: linear-gradient(rgba(255, 255, 255, 0.473), rgba(150, 150, 150, 0.25));
+            z-index: -998;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0;
+        }
+
+        .blob {
+            position: absolute;
+            z-index: -1000;
+            border-radius: 50%;
+            width: 1500px;
+            height: 1500px;
+            filter: blur(15px);
+            opacity: 0.5;
+            animation: rotate 5s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .blob-1 {
+            left: -650px;
+            top: -650px;
+            background: #59C173;
+            background: -webkit-linear-gradient(to bottom, #5D26C1, #a17fe0, #59C173);
+            background: linear-gradient(to bottom, #5D26C1, #a17fe0, #59C173);
+        }
+
+        .blob-2 {
+            left: -300px;
+            top: 650px;
+            background: #A8EB12;
+            background: -webkit-linear-gradient(to bottom, #54C0EC, #A8EB12);
+            background: linear-gradient(to bottom, #54C0EC, #A8EB12);
+        }
+
+        .blob-3 {
+            right: -600px;
+            bottom: -100px;
+            background: #CC2E5C;
+            background: -webkit-linear-gradient(to bottom, #753a88, #CC2E5C);
+            background: linear-gradient(to bottom, #753a88, #CC2E5C);
+        }
+
+        .blob-4 {
+            right: -200px;
+            top: -200px;
+            background: #FFA17F;
+            background: -webkit-linear-gradient(to bottom right, #B993D6, #8CA6DB, #FFA17F);
+            background: linear-gradient(to bottom right, #B993D6, #8CA6DB, #FFA17F);
+        }
+
+        /* =========================
+           页面整体布局
+           ========================= */
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #111827;
+        }
+
+        /* 外层登录容器：负责居中 + 控制整体宽度 */
+        .auth-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 600px;          /* 再宽一点 */
+            padding: 40px;             /* 外边空白再多一点，看起来更大气 */
+        }
+
+        /* 登录 / 注册卡片本体 */
+        .login {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px 36px 36px;   /* ↑↑↑ 关键：上下 padding 明显加大 */
+            border-radius: 22px;
+            box-shadow:
+                    0 18px 45px rgba(15, 23, 42, 0.35),
+                    0 0 0 1px rgba(148, 163, 184, 0.55);
+            width: 100%;
+            /* 关键：给一个最小高度，让它看上去更“高” */
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 2;
+        }
+
+        /* 标题稍微大一点，撑住这个卡片 */
+        .login-title {
+            text-align: center;
+            font-size: 28px;
+            margin: 0 0 10px;
+            letter-spacing: 0.08em;
+        }
+
+        /* 副标题稍微拉开一些间距 */
+        .login-subtitle {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 28px;
+            color: #6b7280;
+        }
+
+        /* 每个表单项之间的间距也加大一点，高度自然就上来了 */
+        .form-item {
+            margin-bottom: 22px;
+            margin-right: 22px;
+        }
+
+        .form-item input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            height: 40px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .form-item select {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            height: 40px;
+            font-size: 14px;
+            outline: none;
+            background-color: #fff;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+
+        .form-item input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            height: 38px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .form-item input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.18);
+        }
+
+        .form-item select {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            height: 40px;
+            font-size: 14px;
+            outline: none;
+            background-color: #fff;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .form-item select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.18);
+        }
+
+        .form-item button {
+            width: 100%;
+            font-size: 15px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            box-shadow:
+                    0 10px 24px rgba(37, 99, 235, 0.55),
+                    0 0 0 1px rgba(37, 99, 235, 0.5);
+            transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.12s ease;
+        }
+
+        .form-item button:hover:not(:disabled) {
+            transform: translateY(-1px);
+            filter: brightness(1.05);
+            box-shadow:
+                    0 14px 30px rgba(37, 99, 235, 0.75),
+                    0 0 0 1px rgba(37, 99, 235, 0.7);
+        }
+
+        .form-item button:active:not(:disabled) {
+            transform: translateY(0);
+            box-shadow:
+                    0 8px 18px rgba(15, 23, 42, 0.9),
+                    0 0 0 1px rgba(37, 99, 235, 0.85);
+        }
+
+        .form-item button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .link-container {
+            display: flex;
+            justify-content: flex-end;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .link-container a {
+            color: #2563eb;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .link-container a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            display: block;
+            font-size: 12px;
+            margin-top: 4px;
+            color: #dc2626;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .auth-wrapper {
+                padding: 16px;
+            }
+
+            .login {
+                padding: 22px 18px 18px;
+                border-radius: 16px;
+            }
+
+            .login-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 背景泡泡：完全跟 AI 页面那套一样 -->
+<div class="card">
+    <div class="card__content"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+</div>
+
+<div class="auth-wrapper">
+    <!-- 登录 -->
+    <div id="login" class="login">
+        <h1 class="login-title">登录</h1>
+        <div class="login-subtitle">智能心理疾病辅助诊疗系统</div>
+
+        <div class="form-item">
+            <input id="loginUserId" type="text" placeholder="请输入账号">
+        </div>
+
+        <div class="form-item">
+            <input id="loginPassword" type="password" placeholder="请输入密码">
+        </div>
+
+        <div class="form-item">
+            <button onclick="login()">
+                <i class="fas fa-sign-in-alt"></i>
+                登录
+            </button>
+        </div>
+
+        <div class="link-container">
+            <a href="#" onclick="showRegisterForm()">注册</a>
+        </div>
+    </div>
+
+    <!-- 注册 -->
+    <div id="register" class="login hidden">
+        <h1 class="login-title">注册</h1>
+        <div class="login-subtitle">请填写信息完成账号创建</div>
+
+        <div class="form-item">
+            <input id="registerUserId" type="text" placeholder="请输入用户ID">
+            <span id="errorUserId" class="error-message"></span>
+        </div>
+
+        <div class="form-item">
+            <input id="registerPassword" type="password" placeholder="请输入密码">
+            <span id="errorPassword" class="error-message"></span>
+        </div>
+
+        <div class="form-item">
+            <input id="registerEmail" type="email" placeholder="请输入邮箱">
+            <span id="errorEmail" class="error-message"></span>
+        </div>
+
+        <div class="form-item">
+            <input id="registerIdNumber" type="text" placeholder="请输入身份证号">
+            <span id="errorIdNumber" class="error-message"></span>
+        </div>
+
+        <div class="form-item">
+            <select id="registerRole">
+                <option value="">请选择角色</option>
+                <option value="doctor">医生</option>
+                <option value="patient">病人</option>
+                <option value="admin">管理员</option>
+            </select>
+            <span id="errorRole" class="error-message"></span>
+        </div>
+
+        <div class="form-item">
+            <input id="registerAge" type="number" placeholder="请输入年龄" min="10" max="100">
+            <span id="errorAge" class="error-message"></span>
+        </div>
+
+        <div class="form-item">
+            <select id="registerGender">
+                <option value="">请选择性别</option>
+                <option value="male">男</option>
+                <option value="female">女</option>
+                <option value="unknown">未知</option>
+            </select>
+            <span id="errorGender" class="error-message"></span>
+        </div>
+
+        <div class="form-item">
+            <button id="registerBtn" disabled onclick="register()">
+                <i class="fas fa-user-plus"></i>
+                注册
+            </button>
+        </div>
+
+        <div class="link-container">
+            <a href="#" onclick="showLoginForm()">
+                <i class="fas fa-arrow-left"></i>
+                返回登录
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

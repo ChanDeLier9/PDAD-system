@@ -1,0 +1,93 @@
+body {
+    width: 1920px;
+    height: 1080px;
+}
+
+.iconfont {
+    font-size: 30px;
+    display: inline-block;
+    transition: .3s;
+    float: left;
+    cursor: pointer;
+}
+
+.iconfont:hover {
+    color: yellow;
+}
+
+table {
+    border-collapse: collapse; /* 合并边框 */
+    width: 100%; /* 设置表格宽度 */
+}
+
+thead {
+    width: 1920px;
+    height: 60px;
+    line-height: 1px;
+    background-color: #333;
+    font-size: 28px;
+    margin: 0 auto;
+    color: azure;
+    position: sticky;
+    top: 0;
+}
+
+.time {
+    width: 345px;
+}
+
+.test1 {
+    width: 275px;
+}
+
+.test2 {
+    width: 288px;
+}
+
+.test3 {
+    width: 289px;
+}
+
+.test4 {
+    width: 280px;
+}
+
+.test5 {
+    width: 275px;
+}
+
+.test {
+    width: 170px;
+}
+
+tbody td {
+    text-align: center;
+    height: 127.5px;
+    color: rgb(36, 119, 192);
+}
+
+.time1 {
+    height: 1020px;
+    color: black;
+}
+
+.advice1 {
+    height: 382.5px;
+    text-align: left;
+    vertical-align: top;
+    color: black;
+}
+
+.advice2 {
+    height: 510px;
+    text-align: left;
+    vertical-align: top;
+    color: black;
+}
+
+.no-border-input {
+    border: none; /* 去掉边框 */
+    outline: none; /* 去掉聚焦时的外边框 */
+    width: 100%; /* 使输入框宽度填满单元格 */
+    box-shadow: none; /* 去掉任何阴影效果 */
+}

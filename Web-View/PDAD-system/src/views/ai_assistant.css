@@ -1,0 +1,390 @@
+/* =========================
+   背景渐变 + 彩色 blob
+   ========================= */
+
+.card {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2000;
+    border-radius: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card__content {
+    background: linear-gradient(rgba(255, 255, 255, 0.473), rgba(150, 150, 150, 0.25));
+    z-index: -998;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+}
+
+.blob {
+    position: absolute;
+    z-index: -1000;
+    border-radius: 50%;
+    width: 1500px;
+    height: 1500px;
+    filter: blur(15px);
+    opacity: 0.5;
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.blob-1 {
+    left: -650px;
+    top: -650px;
+    background: #59C173;
+    background: -webkit-linear-gradient(to bottom, #5D26C1, #a17fe0, #59C173);
+    background: linear-gradient(to bottom, #5D26C1, #a17fe0, #59C173);
+}
+
+.blob-2 {
+    left: -300px;
+    top: 650px;
+    background: #A8EB12;
+    background: -webkit-linear-gradient(to bottom, #54C0EC, #A8EB12);
+    background: linear-gradient(to bottom, #54C0EC, #A8EB12);
+}
+
+.blob-3 {
+    right: -600px;
+    bottom: -100px;
+    background: #CC2E5C;
+    background: -webkit-linear-gradient(to bottom, #753a88, #CC2E5C);
+    background: linear-gradient(to bottom, #753a88, #CC2E5C);
+}
+
+.blob-4 {
+    right: -200px;
+    top: -200px;
+    background: #FFA17F;
+    background: -webkit-linear-gradient(to bottom right, #B993D6, #8CA6DB, #FFA17F);
+    background: linear-gradient(to bottom right, #B993D6, #8CA6DB, #FFA17F);
+}
+
+/* =========================
+   页面整体布局
+   ========================= */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 顶部对齐，不压扁内容 */
+    min-height: 100vh;
+    color: #333;
+}
+
+/* 外层容器只负责布局，背景透明 */
+.ai-assistant-container {
+    position: relative; /* 给返回按钮做定位的参考 */
+    padding: 60px 20px 40px; /* 顶部留出空间给返回按钮 + 标题 */
+    width: 95%;
+    max-width: 1000px;
+    z-index: 1;
+    text-align: center;
+}
+
+/* =========================
+   左上角返回按钮 + 标题
+   ========================= */
+
+/* 标题：中间一块白色“药丸” */
+.ai-assistant-container h1 {
+    color: #222;
+    margin: 0 0 20px;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 8px 18px;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.92);
+    border-radius: 999px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* 左上角返回按钮：样式跟标题类似，小一点 */
+.back-button {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+
+    border: none;
+    background-color: rgba(255, 255, 255, 0.92);
+    color: #333;
+    padding: 6px 14px;
+    border-radius: 999px;
+
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: rgba(245, 245, 245, 0.98);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.22);
+}
+
+.back-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+/* =========================
+   功能卡片：预测 / 训练
+   ========================= */
+
+.fmri-predict-section,
+.model-train-section {
+    margin: 20px auto 0;
+    padding: 22px 24px;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 10px 30px rgba(31, 38, 135, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    text-align: left;
+}
+
+.model-train-section {
+    margin-top: 30px;
+}
+
+/* 模块标题 */
+.fmri-predict-section h2,
+.model-train-section h2 {
+    color: #444;
+    margin: 0 0 16px;
+    font-size: 20px;
+    font-weight: 600;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   上传区域
+   ========================= */
+
+.upload-area {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.upload-button {
+    background-color: #66b3ff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upload-button:hover {
+    background-color: #4da6ff;
+    transform: translateY(-1px);
+}
+
+#fmriFileInput {
+    display: none;
+}
+
+#fileNameDisplay {
+    font-style: italic;
+    color: #666;
+}
+
+/* =========================
+   操作按钮
+   ========================= */
+
+.action-button {
+    background-color: #3299ec;
+    color: white;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top: 5px;
+}
+
+.action-button:hover {
+    background-color: #287bbd;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* =========================
+   预测结果 / 训练结果区域
+   ========================= */
+/* 预测结果区域：可以适当限制高度，保留滚动条 */
+.prediction-results {
+    margin-top: 18px;
+    text-align: left;
+    background-color: rgba(248, 249, 252, 0.95);
+    padding: 12px 14px;
+    border-radius: 10px;
+    max-height: 260px;
+    overflow-y: auto;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* 训练结果 + 曲线区域：放开高度，让它自然长高，不要内部滚动条 */
+.training-progress {
+    margin-top: 18px;
+    text-align: left;
+    background-color: rgba(248, 249, 252, 0.95);
+    padding: 12px 14px;
+    border-radius: 10px;
+    /* 关键：取消高度限制和滚动条 */
+    max-height: none;
+    overflow-y: visible;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+
+.prediction-results h3,
+.training-progress h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    color: #555;
+}
+
+.prediction-results pre,
+.training-progress pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* =========================
+   模型选择 + 参数输入
+   ========================= */
+
+.model-selection,
+.param-input {
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.model-selection label,
+.param-input label {
+    display: inline-block;
+    width: 130px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #444;
+}
+
+.model-selection select,
+.param-input input[type="number"] {
+    width: calc(100% - 140px);
+    padding: 7px 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* =========================
+   小屏幕适配
+   ========================= */
+
+@media (max-width: 600px) {
+    body {
+        padding: 20px 0;
+    }
+
+    .ai-assistant-container {
+        width: 100%;
+        padding: 60px 12px 30px;
+    }
+
+    .fmri-predict-section,
+    .model-train-section {
+        padding: 16px 14px;
+    }
+
+    .upload-area {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .model-selection label,
+    .param-input label {
+        width: 100%;
+        margin-bottom: 4px;
+    }
+
+    .model-selection select,
+    .param-input input[type="number"] {
+        width: 100%;
+    }
+
+    .ai-assistant-container h1 {
+        font-size: 20px;
+        padding: 6px 14px;
+    }
+
+    .back-button {
+        font-size: 13px;
+        padding: 5px 12px;
+        top: 12px;
+        left: 12px;
+    }
+
+
+    /* 训练曲线画布 */
+    #lossChart {
+        margin-top: 10px;
+        width: 100%;
+        height: 260px;      /* 直接给个固定高度，图会明显大一些 */
+        max-height: none;
+    }
+
+
+    /* 让 training-progress 这个小卡片内部有一点空间，已经有了就不用动 */
+    .training-progress {
+        /* 如果前面已经写了就不用重复，只是确认有这些风格 */
+        margin-top: 18px;
+        text-align: left;
+        background-color: rgba(248, 249, 252, 0.95);
+        padding: 12px 14px;
+        border-radius: 10px;
+        max-height: 260px;
+        overflow-y: auto;
+        border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+}

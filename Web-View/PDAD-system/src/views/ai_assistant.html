@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 辅助诊断与模型训练</title>
+    <link rel="stylesheet" href="./ai_assistant.css">
+
+    <!-- 用 CDN 引 Chart.js，用来画训练收敛曲线 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="./ai_assistant.js" defer></script>
+</head>
+
+<body>
+    <div class="card">
+        <div class="card__content"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+    </div>
+    <div class="ai-assistant-container">
+        <!-- 左上角返回按钮 -->
+        <button class="back-button" id="backButton">← 返回上一页</button>
+
+        <!-- 标题 -->
+        <h1>AI 辅助诊断与模型训练</h1>
+
+        <!-- fMRI 预测功能区 -->
+        <section class="fmri-predict-section">
+            <h2>fMRI 图像预测</h2>
+            <div class="upload-area">
+                <input type="file" id="fmriFileInput" accept=".tif,.tiff">
+                <label for="fmriFileInput" class="upload-button">选择 TIF/TIFF 图像</label>
+                <span id="fileNameDisplay">未选择文件</span>
+            </div>
+            <button id="predictButton" class="action-button">开始预测</button>
+            <div class="prediction-results">
+                <h3>预测结果:</h3>
+                <pre id="predictionOutput"></pre>
+            </div>
+        </section>
+
+        <!-- 模型训练功能区 -->
+        <section class="model-train-section">
+            <h2>模型训练</h2>
+
+            <div class="model-selection">
+                <label for="modelType">选择模型类型:</label>
+                <select id="modelType">
+                    <option value="logreg">逻辑回归 (Logistic Regression)</option>
+                    <option value="rf">随机森林 (Random Forest)</option>
+                    <option value="xgb">XGBoost</option>
+                    <option value="lgbm">LightGBM</option>
+                </select>
+            </div>
+
+            <div class="param-input">
+                <label for="trainRatio">训练比例 (0-1):</label>
+                <input type="number" id="trainRatio" value="0.8" min="0" max="1" step="0.01">
+            </div>
+
+            <div class="param-input">
+                <label for="randomState">随机种子:</label>
+                <input type="number" id="randomState" value="2025">
+            </div>
+
+            <!-- 模型超参数输入（会映射到 Python 的 params） -->
+            <div class="param-input">
+                <label for="nEstimators">树的数量/迭代轮数：</label>
+                <input type="number" id="nEstimators" placeholder="如 200">
+            </div>
+
+            <div class="param-input">
+                <label for="maxDepth">树深度：</label>
+                <input type="number" id="maxDepth" placeholder="如 4 或 6">
+            </div>
+
+            <div class="param-input">
+                <label for="learningRate">学习率：</label>
+                <input type="number" step="0.01" id="learningRate" placeholder="如 0.05">
+            </div>
+
+            <button id="trainButton" class="action-button">开始训练</button>
+
+            <div class="training-progress">
+                <h3>训练进度与收敛曲线:</h3>
+                <pre id="trainingOutput"></pre>
+                <!-- 这里用来画“训练过程中的指标/损失收敛曲线” -->
+                <canvas id="lossChart"></canvas>
+            </div>
+        </section>
+
+
+    </div>
+    <script src="./ai_assistant.js" defer></script>
+</body>
+
+</html>

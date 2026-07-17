@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抑郁症测试平台</title>
+    <link rel="stylesheet" href="./advice.css">
+    <link rel="stylesheet" href="./iconfont/font_f3bf40xattr/iconfont.css">
+    <script src="detail.js" defer></script>
+</head>
+<body>
+
+<table border="1" cellspacing="0">
+    <thead>
+    <tr>
+        <th class="time"><i class="iconfont icon-fanhui" onClick="location.href='./clear.html'"></i>时间</th>
+        <th class="test1">id</th>
+        <th class="test2">姓名</th>
+        <th class="test3">量表一测试成绩</th>
+        <th class="test4">量表二测试成绩</th>
+        <th class="test5">量表三测试成绩</th>
+        <th class="test">综合成绩</th>
+    </tr>
+    </thead>
+    <tbody id="patient-info">
+    <!-- 病患信息将动态插入这里 -->
+    </tbody>
+    <tr>
+        <td class="advice1" colspan="6"><input type="text" class="no-border-input" id="diagnosis" placeholder="请输入诊断结果"></td>
+    </tr>
+    <tr>
+        <td class="advice2" colspan="6"><input type="text" class="no-border-input" id="treatment" placeholder="请输入治疗建议"></td>
+    </tr>
+</table>
+
+</body>
+</html>

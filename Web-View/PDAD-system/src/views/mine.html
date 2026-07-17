@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抑郁症测试平台</title>
+    <link rel="stylesheet" href="./mine.css">
+    <script src="mine.js" defer></script>
+</head>
+
+<body>
+    <div class="card">
+        <div class="card__content"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+        <div class="mine-back">
+            <div class="mine-head">
+                <div>
+                    <span class="first">姓名</span>
+                    <span id="doctorNameDisplay" class="second"></span>
+                    <input type="text" id="doctorNameInput" class="editable-input" style="display:none;">
+                </div>
+
+                <div>
+                    <span class="first">工龄</span>
+                    <span id="experienceDisplay" class="second"></span>
+                    <input type="text" id="experienceInput" class="editable-input" style="display:none;">
+                </div>
+
+                <div>
+                    <span class="first">身份证号</span>
+                    <span id="idNumberDisplay" class="second"></span>
+                    <input type="text" id="idNumberInput" class="editable-input" style="display:none;">
+                </div>
+
+                <div>
+                    <span class="first">电话</span>
+                    <span id="phoneDisplay" class="second"></span>
+                    <input type="text" id="phoneInput" class="editable-input" style="display:none;">
+                </div>
+
+                <div>
+                    <span class="first">邮箱</span>
+                    <span id="emailDisplay" class="second"></span>
+                    <input type="text" id="emailInput" class="editable-input" style="display:none;">
+                </div>
+
+                <div>
+                    <span class="first">性别</span>
+                    <span id="genderDisplay" class="second"></span>
+                    <input type="text" id="genderInput" class="editable-input" style="display:none;">
+                </div>
+
+                <div>
+                    <span class="first">年龄</span>
+                    <span id="ageDisplay" class="second"></span>
+                    <input type="text" id="ageInput" class="editable-input" style="display:none;">
+                </div>
+
+                <!-- 修改信息和保存按钮 -->
+                <button id="edit-button" class="modify-info-btn" onclick="enableEdit()">修改信息</button>
+                <button id="save-button" class="modify-info-btn hidden" onclick="saveChanges()">完成</button>
+            </div>
+
+            <!-- 四个按钮区域 - 田字分布 -->
+            <div class="button-grid">
+                <button class="grid-btn" onclick="location.href='./create.html'">添加新患者</button>
+                <button class="grid-btn" onclick="location.href='./check.html'">查看现有患者</button>
+                <button class="grid-btn" onclick="location.href='./ai_assistant.html'">AI辅助</button>
+                <button class="grid-btn" onclick="showArticleMenu()">文章</button>
+                <button class="grid-btn" onclick="location.href='./chat-contacts.html'">聊天</button>
+
+                <!-- 文章子菜单 - 移动到田字格内部，与文章按钮重合 -->
+                <div id="articleMenu" class="article-menu hidden">
+                    <button class="menu-btn" onclick="location.href='./publish-article.html'">发布文章</button>
+                    <button class="menu-btn" onclick="location.href='./article-management.html'">编辑文章</button>
+                    <button class="menu-btn" onclick="hideArticleMenu()">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showArticleMenu() {
+            document.getElementById('articleMenu').classList.remove('hidden');
+        }
+
+        function hideArticleMenu() {
+            document.getElementById('articleMenu').classList.add('hidden');
+        }
+    </script>
+</body>
+
+</html>

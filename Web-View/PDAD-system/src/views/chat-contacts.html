@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择聊天对象</title>
+    <link rel="stylesheet" href="./chat-contacts.css">
+</head>
+<body>
+<div class="chat-contacts-container">
+    <div class="card">
+        <div class="card__content"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+    </div>
+
+    <div class="header">
+        <button class="back-btn" onclick="location.href='./mine.html'">← 返回</button>
+        <h2>选择聊天对象</h2>
+    </div>
+    
+    <!-- 搜索区域 -->
+    <div class="search-section">
+        <div class="search-box">
+            <select id="roleSelect" class="role-select">
+                <option value="patient">患者</option>
+                <option value="doctor">医生</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="输入姓名进行搜索">
+            <button onclick="searchUser()">搜索</button>
+        </div>
+        <div id="searchResult" class="search-result hidden"></div>
+    </div>
+    
+    <!-- 最近联系人 -->
+    <div class="contacts-section">
+        <h3>最近联系人</h3>
+        <div id="contactsList" class="contacts-list">
+            <!-- 联系人列表将通过JavaScript动态加载 -->
+        </div>
+    </div>
+</div>
+
+<script src="./chat-contacts.js"></script>
+</body>
+</html>

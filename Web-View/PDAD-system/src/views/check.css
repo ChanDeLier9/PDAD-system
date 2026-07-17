@@ -1,0 +1,467 @@
+/* =========================
+   全局
+   ========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 蓝色信息栏 */
+body{
+    width: 1920px;
+    height: 1080px;
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    color: #16324a;
+    overflow-x: hidden;
+
+    /* 更柔的底色（不影响布局） */
+    background: linear-gradient(rgba(255,255,255,0.45), rgba(150,150,150,0.18));
+}
+
+/* =========================
+   顶部信息栏（保持你原位置，但更美）
+   ========================= */
+.myintro{
+    width: 1920px;
+    height: 310px;
+
+    /* 从纯色升级为雾化渐变（仍是蓝系） */
+    background: linear-gradient(135deg,
+    rgba(147, 210, 243, 0.92),
+    rgba(120, 205, 240, 0.70),
+    rgba(147, 210, 243, 0.55)
+    );
+
+    /* 玻璃感 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.45);
+    box-shadow: 0 18px 60px rgba(31,38,135,0.12);
+
+    position: relative;
+}
+
+/* 退出登录按钮：仍在右上角（保持 margin-left 定位思想），但更高级 */
+.myintro .launch{
+    background: rgba(255, 255, 255, 0.62);
+    color: rgba(20, 20, 30, 0.86);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 12px;
+
+    height: 38px;
+    padding: 0 14px;
+
+    margin-left: 1854px;
+    margin-top: -20px;
+
+    font-weight: 800;
+    letter-spacing: .3px;
+
+    box-shadow: 0 12px 30px rgba(31,38,135,0.14);
+    transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease, color .2s ease;
+}
+
+.myintro button:hover {
+    color: #ff6700;
+    cursor: pointer;
+}
+
+.myintro .launch:hover{
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.82);
+    box-shadow: 0 18px 46px rgba(31,38,135,0.18);
+}
+
+/* 头像：保持右侧位置，但更立体 */
+.myintro img{
+    border-radius: 50%;
+    overflow: hidden;
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+
+    margin-left: 1750px;
+
+    border: 2px solid rgba(255,255,255,0.70);
+    box-shadow: 0 18px 50px rgba(31,38,135,0.16);
+}
+
+/* 右侧文字：更清晰、更像信息卡 */
+.myintro .name{
+    margin-left: 1795px;
+    margin-top: 10px;
+
+    font-weight: 900;
+    letter-spacing: .5px;
+    color: rgba(10,10,20,0.86);
+    text-shadow: 0 2px 10px rgba(255,255,255,0.55);
+}
+
+.myintro .hospital{
+    margin-top: 10px;
+    margin-left: 1790px;
+
+    font-size: 14px;
+    color: rgba(10,10,20,0.62);
+}
+
+/* 个人中心按钮：保持原位置逻辑，但变成“雾状渐变” */
+.mine{
+    background: linear-gradient(135deg,
+    rgba(93,38,193,0.75),
+    rgba(84,192,236,0.70),
+    rgba(89,193,115,0.55)
+    );
+    background-size: 300% 300%;
+    animation: gradientFlow 10s ease-in-out infinite;
+
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 12px;
+
+    height: 38px;
+    padding: 0 16px;
+
+    margin-top: 34px;
+
+    font-weight: 900;
+    letter-spacing: .3px;
+
+    box-shadow: 0 14px 40px rgba(31,38,135,0.14);
+    transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+}
+
+.mine:hover{
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 18px 52px rgba(31,38,135,0.18);
+}
+
+@keyframes gradientFlow{
+    0%{ background-position: 0% 50%; }
+    50%{ background-position: 100% 50%; }
+    100%{ background-position: 0% 50%; }
+}
+
+/* =========================
+   表格（不改字段宽度，只美化）
+   ========================= */
+table{
+    width: 1920px;
+    margin: 18px auto 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 18px;
+    overflow: hidden;
+
+    background: rgba(255,255,255,0.62);
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow: 0 18px 60px rgba(31,38,135,0.14);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+thead{
+    width: 1920px;
+    height: 54px;
+    line-height: 1px;
+
+    /* 从纯黑 -> 深色雾化渐变 */
+    background: linear-gradient(135deg,
+    rgba(20, 28, 40, 0.92),
+    rgba(35, 50, 72, 0.86)
+    );
+    font-size: 24px;
+    margin: 0 auto;
+    color: rgba(255,255,255,0.96);
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+thead th{
+    padding: 14px 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+
+/* 列宽：保持你原来的字段，不改 */
+.id{ width: 183px; }
+.name{ width: 386px; }
+.test1, .test2, .test3{ width: 260px; }
+.test{ width: 195px; }
+.clear{ width: 328px; }
+.delete{ width: 213px; }
+
+tbody td{
+    text-align: center;
+    height: 144px;
+    color: rgba(36, 119, 192, 0.92);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    background: rgba(255,255,255,0.58);
+    transition: background-color .2s ease, transform .15s ease;
+}
+
+tbody tr:nth-child(even) td{
+    background: rgba(255,255,255,0.46);
+}
+
+tbody tr:hover td{
+    background: rgba(255,255,255,0.75);
+}
+
+/* 表格按钮（如果你的详情/删除是按钮）统一高级一点 */
+tbody button{
+    padding: 10px 14px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 900;
+    letter-spacing: .2px;
+    transition: transform .18s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+/* 给详情/删除按钮一个默认雾化（不影响你 JS） */
+tbody button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(31,38,135,0.18);
+    filter: brightness(1.04);
+}
+
+/* =========================
+   图标（返回/文章按钮）
+   ========================= */
+.iconfont{
+    font-size: 30px;
+    transition: .25s ease;
+    cursor: pointer;
+    top: 30px;
+}
+
+/* 返回图标 hover 更舒服 */
+.iconfont:hover{
+    color: #ffe26f; /* 比黄色更柔一点 */
+    transform: translateY(-2px);
+}
+
+/* 发布文章图标样式（位置不动，质感升级） */
+.publish-article-btn {
+    position: absolute;
+    left: 50px;
+    top: 30px;
+    font-size: 35px;
+    color: rgba(20, 28, 40, 0.86);
+
+    background: rgba(255, 255, 255, 0.62);
+    padding: 10px;
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow: 0 12px 30px rgba(31,38,135,0.14);
+
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
+}
+
+.publish-article-btn:hover {
+    color: #e74c3c;
+    transform: translateY(-2px) scale(1.06);
+    background: rgba(255,255,255,0.80);
+    box-shadow: 0 18px 46px rgba(31,38,135,0.18);
+}
+
+/* 文章管理图标样式（位置不动，质感升级） */
+.article-management-btn {
+    position: absolute;
+    left: 120px;
+    top: 30px;
+    font-size: 35px;
+    color: rgba(20, 28, 40, 0.86);
+
+    background: rgba(255, 255, 255, 0.62);
+    padding: 10px;
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow: 0 12px 30px rgba(31,38,135,0.14);
+
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
+}
+
+.article-management-btn:hover {
+    color: #3498db;
+    transform: translateY(-2px) scale(1.06);
+    background: rgba(255,255,255,0.80);
+    box-shadow: 0 18px 46px rgba(31,38,135,0.18);
+}
+
+/* =========================
+   响应式（保留你原逻辑，不动）
+   ========================= */
+/* 对于宽度小于 768px 的设备 */
+@media (max-width: 1080px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* 对于宽度大于 1920px 的设备 */
+@media (min-width: 1920px) {
+    .container {
+        width: 1920px;
+    }
+}
+/* =========================================================
+   ✅ 追加补丁：泡泡迷幻背景 + 统一字体体系（更高级）
+   不改你原来的定位方式（1920固定、margin-left 那套保留）
+   ========================================================= */
+
+/* ---------- 1) 字体体系：统一 & 更耐看 ---------- */
+:root{
+    --font-main: ui-sans-serif, system-ui, -apple-system, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+    --text-strong: rgba(12, 16, 26, 0.88);
+    --text-normal: rgba(12, 16, 26, 0.72);
+    --text-soft: rgba(12, 16, 26, 0.55);
+    --line: rgba(255,255,255,0.26);
+    --shadow: 0 18px 60px rgba(31,38,135,0.14);
+}
+
+body, button, input, select, textarea, table, th, td{
+    font-family: var(--font-main) !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+    letter-spacing: .2px;
+}
+
+/* 标题、表头更精致 */
+thead{
+    font-weight: 800;
+    letter-spacing: .8px;
+}
+
+thead th{
+    font-weight: 800;
+}
+
+/* 表格内容字更舒服 */
+tbody td{
+    font-weight: 650;
+}
+
+/* 顶部信息卡文字统一 */
+.myintro .name{
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--text-strong);
+}
+.myintro .hospital{
+    font-weight: 650;
+    font-size: 13px;
+    color: var(--text-soft);
+}
+
+/* 按钮统一风格 */
+button, .mine, .launch{
+    font-weight: 850 !important;
+    letter-spacing: .3px;
+}
+
+/* ---------- 2) 泡泡迷幻背景（不改 HTML，只用伪元素） ---------- */
+/* 给 body 一个相对定位，方便放背景层 */
+body{
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 背景泡泡层 */
+body::before,
+body::after{
+    content: "";
+    position: fixed;
+    inset: -20%;
+    z-index: -3000;
+    pointer-events: none;
+    filter: blur(18px);
+    opacity: .75;
+    transform: translateZ(0);
+}
+
+/* 第一层：偏紫/蓝/青 */
+body::before{
+    background:
+            radial-gradient(circle at 12% 18%, rgba(93, 38, 193, 0.35), transparent 58%),
+            radial-gradient(circle at 78% 22%, rgba(84, 192, 236, 0.30), transparent 56%),
+            radial-gradient(circle at 65% 78%, rgba(89, 193, 115, 0.22), transparent 60%),
+            radial-gradient(circle at 22% 78%, rgba(161, 127, 224, 0.26), transparent 62%),
+            radial-gradient(circle at 92% 62%, rgba(255, 161, 127, 0.18), transparent 64%);
+    animation: blobDrift1 16s ease-in-out infinite;
+}
+
+/* 第二层：偏粉/紫，做层次 */
+body::after{
+    background:
+            radial-gradient(circle at 30% 35%, rgba(117, 58, 136, 0.22), transparent 64%),
+            radial-gradient(circle at 88% 40%, rgba(185, 147, 214, 0.24), transparent 66%),
+            radial-gradient(circle at 55% 88%, rgba(84, 192, 236, 0.18), transparent 68%);
+    animation: blobDrift2 20s ease-in-out infinite;
+    opacity: .55;
+}
+
+@keyframes blobDrift1{
+    0%   { transform: translate(-2%, -2%) scale(1); }
+    50%  { transform: translate(2%, 1%)  scale(1.04); }
+    100% { transform: translate(-1%, 2%) scale(1); }
+}
+@keyframes blobDrift2{
+    0%   { transform: translate(2%, 2%)  scale(1.05); }
+    50%  { transform: translate(-2%, 0%) scale(1.10); }
+    100% { transform: translate(1%, -2%) scale(1.05); }
+}
+
+/* ---------- 3) 让你的顶部栏/表格更“玻璃雾化统一” ---------- */
+.myintro{
+    border-bottom: 1px solid rgba(255,255,255,0.35);
+    box-shadow: var(--shadow);
+}
+
+/* 顶部按钮更高级一点（不改变位置） */
+.myintro .launch{
+    background: rgba(255,255,255,0.62);
+    border: 1px solid rgba(255,255,255,0.38);
+    color: var(--text-normal);
+}
+.myintro .launch:hover{
+    color: rgba(255,103,0,0.95);
+}
+
+/* 表格整体更像“雾化卡片” */
+table{
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.36);
+    box-shadow: var(--shadow);
+}
+
+/* 行 hover 更细腻 */
+tbody tr:hover td{
+    background: rgba(255,255,255,0.78);
+}
+
+/* 图标 hover 更克制更高级 */
+.iconfont:hover{
+    color: rgba(255, 226, 111, 0.92);
+}
+
+/* 两个图标按钮更统一 */
+.publish-article-btn,
+.article-management-btn{
+    background: rgba(255,255,255,0.62);
+    border: 1px solid rgba(255,255,255,0.38);
+    color: var(--text-normal);
+}
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抑郁症测试平台</title>
+    <link rel="stylesheet" href="./check.css">
+    <link rel="stylesheet" href="./iconfont/font_f3bf40xattr/iconfont.css">
+    <script src="check.js" defer></script>
+</head>
+<body>
+
+<div class="myintro">
+    <i class="iconfont icon-fanhui" onClick="location.href='./mine.html'"></i>
+    <button class="launch" onClick="location.href='./login.html'">退出登录</button>
+    <!-- 添加发布文章图标 -->
+    <i class="iconfont icon-edit publish-article-btn" title="发布文章" onClick="location.href='./publish-article.html'">📝</i>
+    <!-- 添加文章管理图标 -->
+    <i class="iconfont icon-list article-management-btn" title="文章管理" onClick="location.href='./article-management.html'">📋</i>
+    <span><img src="../assets/touxiang.png" alt="头像"></span>
+    <div class="name">NAME</div>
+    <div class="hospital">医院认证</div>
+    <button class="mine" onclick="location.href='./mine.html'">个人中心</button>
+</div>
+
+<!-- Table Header -->
+<table border="1" cellspacing="0">
+    <thead>
+    <tr>
+        <th class="id">患者ID</th>
+        <th class="name">姓名</th>
+        <th class="test1">量表一成绩</th>
+        <th class="test2">量表二成绩</th>
+        <th class="test3">量表三成绩</th>
+        <th class="clear">详情</th>
+        <th class="delete">删除</th>
+    </tr>
+    </thead>
+    <tbody id="patient-table-body">
+    <!-- 病患信息将动态插入这里 -->
+    </tbody>
+</table>
+
+</body>
+</html>

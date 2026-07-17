@@ -1,0 +1,431 @@
+/* =========================
+   全局：字体 + 可滚动 + 背景雾化
+   ========================= */
+:root{
+    --ink: rgba(12, 14, 20, .82);
+    --muted: rgba(12, 14, 20, .58);
+    --glass: rgba(255,255,255,.42);
+    --glass2: rgba(255,255,255,.26);
+    --line: rgba(255,255,255,.34);
+    --shadow: 0 18px 60px rgba(31, 38, 135, 0.20);
+    --shadow2: 0 10px 30px rgba(0,0,0,.10);
+    --r: 18px;
+}
+
+*{ box-sizing: border-box; }
+
+html, body{
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body{
+    margin: 0;
+    font-family: "Microsoft YaHei", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--ink);
+    padding: 28px 0 50px;
+
+    /* 背景渐变（柔一点） */
+    background: radial-gradient(circle at 20% 10%, rgba(93,38,193,.14), transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(84,192,236,.16), transparent 55%),
+    radial-gradient(circle at 30% 85%, rgba(255,161,127,.14), transparent 60%),
+    radial-gradient(circle at 80% 90%, rgba(89,193,115,.13), transparent 55%),
+    linear-gradient(135deg, rgba(255,255,255,.78), rgba(150,150,150,.18));
+    background-attachment: fixed;
+}
+
+/* 背景漂移的“雾层” */
+body::before,
+body::after{
+    content:"";
+    position: fixed;
+    inset: -20%;
+    pointer-events: none;
+    z-index: -2;
+    filter: blur(18px);
+    opacity: .55;
+    animation: fogDrift 12s ease-in-out infinite;
+}
+
+body::before{
+    background:
+            radial-gradient(circle at 25% 30%, rgba(93, 38, 193, 0.26), transparent 55%),
+            radial-gradient(circle at 75% 20%, rgba(84, 192, 236, 0.22), transparent 55%),
+            radial-gradient(circle at 70% 75%, rgba(89, 193, 115, 0.20), transparent 60%),
+            radial-gradient(circle at 30% 80%, rgba(255, 161, 127, 0.18), transparent 60%);
+}
+
+body::after{
+    opacity: .45;
+    animation-duration: 15s;
+    background:
+            radial-gradient(circle at 40% 25%, rgba(161, 127, 224, 0.22), transparent 60%),
+            radial-gradient(circle at 85% 55%, rgba(117, 58, 136, 0.18), transparent 62%),
+            radial-gradient(circle at 12% 60%, rgba(84, 192, 236, 0.16), transparent 60%);
+}
+
+@keyframes fogDrift{
+    0%   { transform: translate(-1%, -1%) scale(1); }
+    50%  { transform: translate(1.8%, 1.2%) scale(1.04); }
+    100% { transform: translate(-1.2%, 1.6%) scale(1); }
+}
+
+/* =========================
+   顶部信息条（myintro）
+   ========================= */
+.myintro{
+    width: min(1200px, 92vw);
+    margin: 0 auto 18px;
+    padding: 18px 20px;
+    border-radius: 22px;
+    background: rgba(255,255,255,.52);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+    .myintro{
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+}
+
+/* 顶部卡片内部的柔光 */
+.myintro::before{
+    content:"";
+    position:absolute;
+    inset:-30%;
+    background:
+            radial-gradient(circle at 20% 30%, rgba(93,38,193,.20), transparent 55%),
+            radial-gradient(circle at 80% 30%, rgba(84,192,236,.18), transparent 55%),
+            radial-gradient(circle at 60% 90%, rgba(255,161,127,.16), transparent 60%);
+    filter: blur(18px);
+    opacity:.55;
+    pointer-events:none;
+}
+
+/* 返回图标 */
+.iconfont.icon-fanhui{
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    font-size: 26px;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: rgba(255,255,255,.55);
+    border: 1px solid rgba(255,255,255,.50);
+    box-shadow: 0 8px 22px rgba(0,0,0,.10);
+    cursor: pointer;
+    transition: transform .18s ease, background-color .2s ease, box-shadow .2s ease;
+    z-index: 2;
+}
+.iconfont.icon-fanhui:hover{
+    transform: translateY(-1px);
+    background: rgba(255,255,255,.72);
+    box-shadow: 0 12px 28px rgba(0,0,0,.14);
+}
+
+.all{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    line-height: 60px;
+}
+
+/* 头像 */
+.myintro img{
+    width: 72px;
+    height: 72px;
+    border-radius: 999px;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,.7);
+    box-shadow: 0 10px 25px rgba(0,0,0,.12);
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    z-index: 2;
+}
+
+/* 姓名/ID/总分 */
+.first1{
+    font-weight: 800;
+    color: var(--muted);
+    margin-left: 56px; /* 给返回按钮留空间 */
+    margin-right: 6px;
+}
+
+.first2{
+    font-weight: 900;
+    color: var(--ink);
+    margin-right: 18px;
+}
+
+/* 结论行 */
+.conclusion{
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.32);
+    border: 1px solid rgba(255,255,255,.40);
+    position: relative;
+    z-index: 1;
+    font-size: 16px;
+    line-height: 1.5;
+}
+#finalResult{
+    font-weight: 800;
+}
+
+/* =========================
+   AI 面板（ai-panel）
+   ========================= */
+.ai-panel{
+    width: min(1200px, 92vw);
+    margin: 0 auto 18px;
+    padding: 18px 18px 14px;
+    border-radius: 22px;
+    background: rgba(255,255,255,.50);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+    .ai-panel{
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+}
+
+.ai-panel::before{
+    content:"";
+    position:absolute;
+    inset:-28%;
+    background:
+            radial-gradient(circle at 25% 25%, rgba(84,192,236,.22), transparent 55%),
+            radial-gradient(circle at 70% 25%, rgba(161,127,224,.20), transparent 55%),
+            radial-gradient(circle at 55% 90%, rgba(89,193,115,.16), transparent 62%);
+    filter: blur(18px);
+    opacity:.52;
+    pointer-events:none;
+}
+
+.ai-title{
+    margin: 0 0 12px;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: .5px;
+    position: relative;
+    z-index: 1;
+}
+
+/* 四项指标：网格卡片 */
+.ai-grid{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.ai-grid > div{
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.28);
+    border: 1px solid rgba(255,255,255,.36);
+    box-shadow: 0 10px 22px rgba(31,38,135,.10);
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.ai-grid span{
+    color: var(--ink);
+    font-weight: 900;
+    margin-left: 6px;
+}
+
+/* 结论文本 */
+.ai-text{
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.28);
+    border: 1px solid rgba(255,255,255,.36);
+    position: relative;
+    z-index: 1;
+}
+
+.ai-label{
+    font-weight: 900;
+    margin-bottom: 6px;
+    color: var(--muted);
+}
+
+#aiDiagnosisText{
+    color: var(--ink);
+    font-weight: 750;
+    line-height: 1.6;
+}
+
+/* 图片区域 */
+.ai-image-wrap{
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.24);
+    border: 1px solid rgba(255,255,255,.34);
+    position: relative;
+    z-index: 1;
+}
+
+#aiFmriImg{
+    width: 100%;
+    max-height: 360px;
+    object-fit: contain;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.45);
+    background: rgba(255,255,255,.25);
+    box-shadow: var(--shadow2);
+}
+
+.ai-hint{
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.ai-download{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.48);
+    border: 1px solid rgba(255,255,255,.55);
+    color: rgba(20,20,30,.78);
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 10px 22px rgba(31,38,135,.12);
+    transition: transform .18s ease, box-shadow .2s ease, background-color .2s ease;
+}
+.ai-download:hover{
+    transform: translateY(-1px);
+    background: rgba(255,255,255,.68);
+    box-shadow: 0 14px 30px rgba(31,38,135,.16);
+}
+
+/* =========================
+   表格：诊断/治疗建议
+   ========================= */
+table{
+    width: min(1200px, 92vw);
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 22px;
+    overflow: hidden;
+    background: rgba(255,255,255,.48);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+}
+
+thead th{
+    background: rgba(20, 22, 30, .78);
+    color: rgba(255,255,255,.92);
+    font-size: 16px;
+    padding: 14px 12px;
+}
+
+tbody td{
+    padding: 14px;
+    background: rgba(255,255,255,.22);
+    border-top: 1px solid rgba(255,255,255,.22);
+}
+
+/* textarea 更高级一点 */
+.no-border-input{
+    width: 100%;
+    min-height: 160px;
+    resize: vertical;
+    border: 1px solid rgba(255,255,255,.40);
+    border-radius: 14px;
+    padding: 12px 12px;
+    outline: none;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: rgba(255,255,255,.28);
+}
+
+@supports (backdrop-filter: blur(1px)) {
+    .no-border-input{
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+}
+
+.no-border-input:focus{
+    border-color: rgba(84,192,236,.55);
+    box-shadow: 0 0 0 3px rgba(84,192,236,.14);
+}
+
+/* =========================
+   保存按钮
+   ========================= */
+.save-btn-container{
+    width: min(1200px, 92vw);
+    margin: 14px auto 0;
+    display: flex;
+    justify-content: center;
+}
+
+.save-btn-container button{
+    border: none;
+    cursor: pointer;
+    padding: 12px 26px;
+    border-radius: 999px;
+    font-weight: 900;
+    letter-spacing: .5px;
+    color: rgba(255,255,255,.95);
+    background: linear-gradient(135deg,
+    rgba(93,38,193,.72),
+    rgba(84,192,236,.68),
+    rgba(89,193,115,.55)
+    );
+    box-shadow: 0 16px 40px rgba(31,38,135,.20);
+    transition: transform .18s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.save-btn-container button:hover{
+    transform: translateY(-2px);
+    filter: saturate(1.05) brightness(1.02);
+    box-shadow: 0 22px 55px rgba(31,38,135,.24);
+}
+
+.save-btn-container button:active{
+    transform: translateY(0);
+    box-shadow: 0 12px 34px rgba(31,38,135,.18);
+}
+
+/* =========================
+   响应式：小屏幕
+   ========================= */
+@media (max-width: 920px){
+    .ai-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .myintro img{ width: 62px; height: 62px; }
+    .conclusion{ font-size: 15px; }
+}
+
+@media (max-width: 520px){
+    body{ padding: 18px 0 40px; }
+    .first1{ display: inline-block; margin-top: 6px; }
+    .ai-grid{ grid-template-columns: 1fr; }
+}

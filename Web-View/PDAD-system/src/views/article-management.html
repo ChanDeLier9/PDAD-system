@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章管理</title>
+    <link rel="stylesheet" href="./article-management.css">
+    <link rel="stylesheet" href="./iconfont/font_f3bf40xattr/iconfont.css">
+</head>
+<body>
+    <div class="card">
+        <div class="card__content"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <i class="iconfont icon-fanhui back-btn" onclick="goBack()"></i>
+            <h1>我的文章管理</h1>
+            <button class="btn-new-article" onclick="location.href='./publish-article.html'">发布新文章</button>
+        </div>
+        
+        <div class="content">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="搜索文章标题...">
+                <button onclick="searchArticles()">搜索</button>
+            </div>
+            
+            <div class="articles-list" id="articlesList">
+                <!-- 文章列表将动态插入这里 -->
+            </div>
+        </div>
+        
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>加载中...</p>
+        </div>
+    </div>
+    
+    <!-- 编辑文章模态框 -->
+    <div id="editModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>编辑文章</h2>
+                <span class="close" onclick="closeEditModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="editArticleForm">
+                    <input type="hidden" id="editArticleId">
+                    <div class="form-group">
+                        <label for="editTitle">文章标题 *</label>
+                        <input type="text" id="editTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editAuthor">作者姓名 *</label>
+                        <input type="text" id="editAuthor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTag">文章标签 *</label>
+                        <select id="editTag" required>
+                            <option value="">请选择标签</option>
+                            <option value="抑郁症">抑郁症</option>
+                            <option value="心理健康">心理健康</option>
+                            <option value="治疗方法">治疗方法</option>
+                            <option value="预防保健">预防保健</option>
+                            <option value="康复指导">康复指导</option>
+                            <option value="药物治疗">药物治疗</option>
+                            <option value="心理咨询">心理咨询</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editContent">文章内容 *</label>
+                        <textarea id="editContent" required rows="10"></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" onclick="closeEditModal()">取消</button>
+                        <button type="submit">保存修改</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="./article-management.js"></script>
+</body>
+</html>

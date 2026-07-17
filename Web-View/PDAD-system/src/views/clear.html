@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抑郁症测试平台</title>
+    <link rel="stylesheet" href="./clear.css">
+    <link rel="stylesheet" href="./iconfont/font_f3bf40xattr/iconfont.css">
+    <script src="clear.js" defer></script>
+</head>
+<body>
+<i class="iconfont icon-fanhui" onClick="location.href='./check.html'"></i>
+<div class="all">
+    <!-- 个人信息区域 -->
+    <div class="myintro">
+        <span><img src="../assets/touxiang.png" alt="头像"></span>
+        <span class="first1">姓名：</span>
+        <span class="first2" id="patientName">姓名</span>
+        <span class="first1">ID：</span>
+        <span class="first2" id="patientId">ID</span>
+        <span class="first1">总分：</span>
+        <span class="first2" id="finalScore">总分</span>
+        <div class="conclusion">
+            结论：<span id="finalResult"></span>
+        </div>
+    </div>
+
+    <!-- AI 影像分析展示区 -->
+    <section class="ai-panel">
+        <h2 class="ai-title">AI 影像分析</h2>
+
+        <div class="ai-grid">
+            <div>更新时间：<span id="aiUpdateTime">-</span></div>
+            <div>风险等级：<span id="aiRiskLevel">-</span></div>
+            <div>抑郁概率：<span id="aiProb">-</span></div>
+            <div>可靠度：<span id="aiReliability">-</span></div>
+        </div>
+
+        <div class="ai-text">
+            <div class="ai-label">结论：</div>
+            <div id="aiDiagnosisText">-</div>
+        </div>
+
+        <div class="ai-image-wrap">
+            <img id="aiFmriImg" alt="fMRI 图像预览" style="display:none;">
+            <div id="aiImgHint" class="ai-hint"></div>
+            <a id="aiDownloadLink" class="ai-download" href="#" download="fmri.tif" style="display:none;">下载原始影像</a>
+        </div>
+    </section>
+
+    <!-- 诊断和治疗建议表格 -->
+    <table border="1" cellspacing="0">
+        <thead>
+        <tr>
+            <th class="advice">诊断结果</th>
+            <th class="advice">治疗建议</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="advice1">
+                <!-- 使用 textarea 替代 input，支持多行输入 -->
+                <textarea class="no-border-input" id="diagnosis" placeholder="请输入诊断结果"></textarea>
+            </td>
+            <td class="advice2">
+                <textarea class="no-border-input" id="treatment" placeholder="请输入治疗建议"></textarea>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- 保存按钮 -->
+    <div class="save-btn-container">
+        <button onclick="savePatientInfo()">保存</button>
+    </div>
+</div>
+</body>
+</html>

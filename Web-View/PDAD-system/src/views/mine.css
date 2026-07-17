@@ -1,0 +1,742 @@
+.card {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2000;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.card__content {
+    background: linear-gradient(rgba(255, 255, 255, 0.473), rgba(150, 150, 150, 0.25));
+    z-index: -998;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+}
+
+.blob {
+    position: absolute;
+    z-index: -1000;
+    border-radius: 50%;
+    width: 1500px;
+    height: 1500px;
+    filter: blur(15px);
+    opacity: 0.5;
+    animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.blob-1 {
+    left: -450px;
+    top: -650px;
+    background: #59C173;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #5D26C1, #a17fe0, #59C173);
+
+    background: linear-gradient(to bottom, #5D26C1, #a17fe0, #59C173);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.blob-2 {
+    left: -300px;
+    top: 450px;
+    background: #A8EB12;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #54C0EC, #A8EB12);
+
+    background: linear-gradient(to bottom, #54C0EC, #A8EB12);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.blob-3 {
+    right: -450px;
+    bottom: -1000px;
+    background: #CC2E5C;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #753a88, #CC2E5C);
+
+    background: linear-gradient(to bottom, #753a88, #CC2E5C);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.blob-4 {
+    right: -250px;
+    top: -200px;
+    background: #FFA17F;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom right, #B993D6, #8CA6DB, #FFA17F);
+
+    background: linear-gradient(to bottom right, #B993D6, #8CA6DB, #FFA17F);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.mine-back {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    z-index: -1;
+    border-radius: 55px;
+}
+
+.mine-head {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(45deg, rgb(178, 250, 225), rgb(179, 248, 248));
+    width: 25%;
+    height: 84vh;
+    border-radius: 25px;
+    margin-top: 11vh;
+    margin-left: 2%;
+    z-index: 0;
+    line-height: 8vh;
+    display: inline;
+    position: relative;
+    font-size: 20px;
+    padding: 20px;
+}
+
+/* 字段标签样式 */
+.first {
+    width: 100%;
+    margin-left: 20px;
+    text-align: left;
+    position: absolute;
+}
+
+/* 显示信息区域样式 */
+.second {
+    text-align: left;
+    width: 40px;
+    position: relative;
+    margin-left: 160px;
+}
+
+.editable-input {
+    display: none; /* 默认隐藏 */
+    width: 200px;
+    position: relative;
+    margin-left: 160px;
+}
+
+/* 按钮样式 */
+.modify-info-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #3299ec;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modify-info-btn:hover {
+    background-color: #287bbd;
+    transform: translateY(-2px);
+}
+
+.modify-info-btn.hidden {
+    display: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* 田字分布按钮网格 */
+.button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    width: 800px;
+    height: 84vh; /* 与左侧个人信息框高度匹配 */
+    margin-left: 5%;
+    margin-top: 11vh;
+    position: relative; /* 为子菜单定位提供参考 */
+}
+
+.grid-btn {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 四个按钮的不同颜色 */
+.grid-btn:nth-child(1) {
+    background: linear-gradient(45deg, #8df3ee, #3299ec);
+    border-radius: 20px;
+}
+
+.grid-btn:nth-child(2) {
+    background: linear-gradient(45deg, #9ee638, #03e616);
+    border-radius: 20px;
+}
+
+.grid-btn:nth-child(3) {
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    z-index: 1000;
+}
+
+.grid-btn:nth-child(4) {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    border-radius: 20px;
+}
+
+.grid-btn:nth-child(5) {
+    background: linear-gradient(45deg, #874ecd, #a0447b);
+    border-radius: 20px;
+}
+
+.grid-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.grid-btn:nth-child(1):hover {
+    background: linear-gradient(45deg, #3299ec, #8df3ee);
+    border-radius: 20px;
+}
+
+.grid-btn:nth-child(2):hover {
+    background: linear-gradient(45deg, #0be603, #bbe638);
+    border-radius: 20px;
+}
+
+.grid-btn:nth-child(3):hover {
+    background: linear-gradient(45deg, #44a08d, #4ecdc4);
+    position: absolute;
+    width: 200rpx;
+    height: 200rpx;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.grid-btn:nth-child(4):hover {
+    background: linear-gradient(45deg, #ff8e8e, #ff6b6b);
+    border-radius: 20px;
+}
+
+.grid-btn:nth-child(5):hover {
+    background: linear-gradient(45deg, #a0449e, #814ecd);
+    border-radius: 20px;
+}
+
+/* 文章子菜单样式 - 精确覆盖文章按钮位置（左下角） */
+.article-menu {
+    position: absolute;
+    top: calc(50% + 10px); /* 定位到下半部分，加上gap的一半 */
+    left: 0; /* 定位到左侧 */
+    width: calc(50% - 10px); /* 与单个按钮宽度匹配，减去gap的一半 */
+    height: calc(50% - 10px); /* 与单个按钮高度匹配，减去gap的一半 */
+    background: white;
+    border-radius: 20px; /* 与按钮圆角保持一致 */
+    padding: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.menu-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1; /* 让按钮平均分配空间 */
+}
+
+.menu-btn:nth-child(1) {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+}
+
+.menu-btn:nth-child(2) {
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+}
+
+.menu-btn:nth-child(3) {
+    background: linear-gradient(45deg, #95a5a6, #7f8c8d);
+}
+
+.menu-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================================
+   ✅ 终极雾状迷幻版补丁（粘到 mine.css 最底部）
+   目标：
+   - 左侧信息卡更大、更显眼、更“玻璃雾化”
+   - 右侧按钮更雾、更接近背景泡泡色系（不刺眼）
+   - AI 圆按钮更大、更像核心入口
+   - 整体布局更舒服：左大右稳
+   ========================================================= */
+
+/* 软雾漂移动画 */
+@keyframes fogDrift {
+    0%   { transform: translate(-2%, -2%) scale(1); opacity: .55; }
+    50%  { transform: translate(2%, 1%) scale(1.05); opacity: .75; }
+    100% { transform: translate(-1%, 2%) scale(1); opacity: .60; }
+}
+@keyframes fogDrift2 {
+    0%   { transform: translate(2%, 2%) scale(1.05); opacity: .40; }
+    50%  { transform: translate(-2%, 0%) scale(1.10); opacity: .55; }
+    100% { transform: translate(1%, -2%) scale(1.05); opacity: .45; }
+}
+
+/* ---------- 1) 整体布局：左大右稳 ---------- */
+.mine-back{
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(18px, 3.6vw, 56px);
+    box-sizing: border-box;
+
+    /* 让左右内容更舒适 */
+    gap: clamp(26px, 4vw, 70px);
+
+    /* 限制内容区宽度，让左卡“在左边很显眼” */
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ---------- 2) 左侧信息卡：更大、更显眼、更雾化 ---------- */
+.mine-head{
+    /* ✅ 更大、更显眼 */
+    width: clamp(460px, 34vw, 620px);
+    min-height: 86vh;
+    height: auto;
+
+    margin: 0 !important;
+    padding: 26px 26px 20px;
+    border-radius: 26px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    /* ✅ 迷幻雾状玻璃：和泡泡同系（紫/蓝/青/绿/粉）但低饱和 */
+    background: linear-gradient(135deg,
+    rgba(93, 38, 193, 0.16),
+    rgba(161, 127, 224, 0.18),
+    rgba(84, 192, 236, 0.16),
+    rgba(89, 193, 115, 0.13),
+    rgba(255, 161, 127, 0.12)
+    );
+    border: 1px solid rgba(255,255,255,0.40);
+    box-shadow:
+            0 18px 60px rgba(31, 38, 135, 0.20),
+            0 0 0 1px rgba(255,255,255,0.10) inset;
+    position: relative;
+}
+
+/* 玻璃雾化效果（支持就用，不支持也不影响） */
+@supports (backdrop-filter: blur(1px)) {
+    .mine-head{
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    }
+}
+
+/* ✅ 左卡的“雾层”叠加（非常关键：让它像背景泡泡的雾） */
+.mine-head::before,
+.mine-head::after{
+    content: "";
+    position: absolute;
+    inset: -20%;
+    pointer-events: none;
+    border-radius: 30px;
+    filter: blur(18px);
+    opacity: .65;
+    z-index: 0;
+}
+
+.mine-head::before{
+    background:
+            radial-gradient(circle at 25% 30%, rgba(93, 38, 193, 0.28), transparent 55%),
+            radial-gradient(circle at 70% 20%, rgba(84, 192, 236, 0.22), transparent 52%),
+            radial-gradient(circle at 60% 75%, rgba(89, 193, 115, 0.20), transparent 58%),
+            radial-gradient(circle at 30% 80%, rgba(255, 161, 127, 0.18), transparent 60%);
+    animation: fogDrift 10s ease-in-out infinite;
+}
+
+.mine-head::after{
+    background:
+            radial-gradient(circle at 40% 20%, rgba(161, 127, 224, 0.22), transparent 58%),
+            radial-gradient(circle at 85% 55%, rgba(117, 58, 136, 0.18), transparent 62%),
+            radial-gradient(circle at 15% 60%, rgba(84, 192, 236, 0.16), transparent 60%);
+    animation: fogDrift2 12s ease-in-out infinite;
+}
+
+/* 确保卡片内容在雾层之上 */
+.mine-head > *{
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- 3) 左卡字段：变成“卡片表单行”，不粘一起 ---------- */
+.mine-head > div{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 10px;
+    border-radius: 14px;
+
+    /* 行本身也雾化 */
+    background: rgba(255,255,255,0.16);
+    border: 1px solid rgba(255,255,255,0.26);
+}
+
+@supports (backdrop-filter: blur(1px)) {
+    .mine-head > div{
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+}
+
+/* 字段名 */
+.first{
+    position: static !important;
+    margin: 0 !important;
+    width: 110px;
+    flex: 0 0 110px;
+    font-weight: 800;
+    color: rgba(10, 10, 20, 0.72);
+}
+
+/* 字段值 */
+.second{
+    position: static !important;
+    margin: 0 !important;
+    flex: 1;
+    font-weight: 700;
+    color: rgba(10, 10, 20, 0.70);
+}
+
+/* 编辑输入框更柔和 */
+.editable-input{
+    width: 100%;
+    margin-left: 0 !important;
+    border-radius: 12px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.18);
+    outline: none;
+}
+@supports (backdrop-filter: blur(1px)) {
+    .editable-input{
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+/* 修改/完成按钮：雾化风格 */
+.modify-info-btn{
+    width: 100%;
+    margin-top: 12px;
+    border-radius: 14px;
+    padding: 12px 16px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    background: linear-gradient(135deg,
+    rgba(93,38,193,0.55),
+    rgba(84,192,236,0.55),
+    rgba(89,193,115,0.45)
+    );
+    border: 1px solid rgba(255,255,255,0.28);
+}
+
+/* =========================================================
+   ✅ 右侧功能按钮：泡泡同款雾化渐变 + 动态流动 + 高级 hover
+   （不改左侧表单）
+   ========================================================= */
+
+/* 让按钮容器更“通透”一点（可选，不影响布局） */
+.button-grid{
+    position: relative;
+}
+
+/* ---------- 动画：渐变流动 + 雾层漂移 + 悬浮呼吸 ---------- */
+@keyframes bubbleFlow {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes mistDrift {
+    0%   { transform: translate(-2%, -2%) scale(1.02); opacity: .55; }
+    50%  { transform: translate(2%, 1%)  scale(1.08); opacity: .75; }
+    100% { transform: translate(-1%, 2%) scale(1.03); opacity: .60; }
+}
+@keyframes glowPulse {
+    0%   { filter: saturate(0.88) brightness(0.96); }
+    50%  { filter: saturate(1.02) brightness(1.05); }
+    100% { filter: saturate(0.90) brightness(0.98); }
+}
+
+/* ---------- 统一按钮基底：玻璃雾化 + 轻微流光 ---------- */
+.grid-btn{
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.26);
+    border-radius: 22px;
+
+    /* 更“雾状”的阴影 */
+    box-shadow:
+            0 16px 55px rgba(31, 38, 135, 0.20),
+            0 0 0 1px rgba(255,255,255,0.10) inset;
+
+    /* 颜色不刺眼：降低饱和/亮度，hover 再提升 */
+    filter: saturate(0.80) brightness(0.92);
+
+    transition:
+            transform 220ms ease,
+            box-shadow 220ms ease,
+            filter 220ms ease;
+}
+
+/* 如果浏览器支持，按钮也做毛玻璃（更像背景泡泡） */
+@supports (backdrop-filter: blur(1px)) {
+    .grid-btn{
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+    }
+}
+
+/* 按钮内部“雾层”——跟泡泡一样的多色径向渐变漂移 */
+.grid-btn::before{
+    content:"";
+    position:absolute;
+    inset:-28%;
+    pointer-events:none;
+    border-radius: 28px;
+    filter: blur(18px);
+    opacity:.60;
+    background:
+            radial-gradient(circle at 20% 22%, rgba(93,38,193,.38), transparent 58%),
+            radial-gradient(circle at 78% 25%, rgba(84,192,236,.30), transparent 60%),
+            radial-gradient(circle at 70% 78%, rgba(89,193,115,.22), transparent 62%),
+            radial-gradient(circle at 25% 82%, rgba(255,161,127,.18), transparent 64%),
+            radial-gradient(circle at 50% 55%, rgba(161,127,224,.22), transparent 66%);
+    animation: mistDrift 9s ease-in-out infinite;
+}
+
+/* 按钮高光层：让文字更“浮在雾里” */
+.grid-btn::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+            radial-gradient(circle at 18% 18%, rgba(255,255,255,.35), transparent 45%),
+            radial-gradient(circle at 85% 70%, rgba(255,255,255,.16), transparent 55%);
+    opacity:.55;
+}
+
+/* ---------- 每个按钮主底色：完全按你 blob 的配色逻辑来 ---------- */
+/* 1) 添加新患者：紫 -> 淡紫 -> 绿（blob-1 风格） */
+.grid-btn:nth-child(1){
+    background: linear-gradient(135deg,
+    rgba(93,38,193,.72),
+    rgba(161,127,224,.55),
+    rgba(89,193,115,.42)
+    );
+    background-size: 320% 320%;
+    animation: bubbleFlow 10s ease-in-out infinite, glowPulse 6s ease-in-out infinite;
+}
+
+/* 2) 查看现有患者：蓝 -> 绿（blob-2 风格，但压低刺眼绿） */
+.grid-btn:nth-child(2){
+    background: linear-gradient(135deg,
+    rgba(84,192,236,.68),
+    rgba(120,210,210,.44),
+    rgba(89,193,115,.34)
+    );
+    background-size: 320% 320%;
+    animation: bubbleFlow 11s ease-in-out infinite, glowPulse 7s ease-in-out infinite;
+}
+
+/* 4) 文章：紫 -> 粉红（blob-3 风格） */
+.grid-btn:nth-child(4){
+    background: linear-gradient(135deg,
+    rgba(117,58,136,.70),
+    rgba(204,46,92,.42)
+    );
+    background-size: 320% 320%;
+    animation: bubbleFlow 12s ease-in-out infinite, glowPulse 7.5s ease-in-out infinite;
+}
+
+/* 5) 聊天：淡紫 -> 蓝 -> 橙（blob-4 风格，橙色压低） */
+.grid-btn:nth-child(5){
+    background: linear-gradient(135deg,
+    rgba(185,147,214,.62),
+    rgba(140,166,219,.55),
+    rgba(255,161,127,.28)
+    );
+    background-size: 320% 320%;
+    animation: bubbleFlow 10.5s ease-in-out infinite, glowPulse 7s ease-in-out infinite;
+}
+
+/* ---------- 中间 AI 圆按钮：更像“核心泡泡”，hover 更明显 ---------- */
+.grid-btn:nth-child(3){
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.30);
+    box-shadow:
+            0 24px 78px rgba(31,38,135,0.26),
+            0 0 0 1px rgba(255,255,255,0.12) inset;
+
+    /* 更丰富的泡泡合成色（同系） */
+    background: linear-gradient(135deg,
+    rgba(93,38,193,.80),
+    rgba(161,127,224,.58),
+    rgba(84,192,236,.64),
+    rgba(89,193,115,.38),
+    rgba(255,161,127,.22)
+    );
+    background-size: 340% 340%;
+    animation: bubbleFlow 8s ease-in-out infinite, glowPulse 5.5s ease-in-out infinite;
+
+    transition: transform 240ms ease, box-shadow 240ms ease, filter 240ms ease;
+}
+
+/* 圆按钮也加“更浓雾” */
+.grid-btn:nth-child(3)::before{
+    opacity:.75;
+    animation-duration: 7.5s;
+}
+
+/* ---------- hover：更像泡泡被“点亮”，并有轻微倾斜（高级感） ---------- */
+.grid-btn:hover{
+    transform: translateY(-6px) scale(1.01);
+    filter: saturate(1.05) brightness(1.06);
+    box-shadow:
+            0 26px 85px rgba(31,38,135,0.28),
+            0 0 0 1px rgba(255,255,255,0.16) inset;
+}
+
+/* hover 时雾层加速一点，像能量流动 */
+.grid-btn:hover::before{
+    opacity:.82;
+    animation-duration: 5.8s;
+}
+
+/* hover 高光更强一点 */
+.grid-btn:hover::after{
+    opacity:.75;
+}
+
+/* 中间圆按钮 hover：更明显（核心入口） */
+.grid-btn:nth-child(3):hover{
+    transform: translate(-50%, -50%) scale(1.06); /* 保持居中 + 放大 */
+    filter: saturate(1.12) brightness(1.10);
+    box-shadow:
+            0 34px 110px rgba(31,38,135,0.34),
+            0 0 0 1px rgba(255,255,255,0.18) inset;
+}
+
+/* ---------- 子菜单也改成泡泡雾化（不改功能） ---------- */
+.article-menu{
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.28);
+    box-shadow: 0 20px 70px rgba(31,38,135,0.22);
+    overflow: hidden;
+    position: absolute;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+    .article-menu{
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+}
+
+.article-menu::before{
+    content:"";
+    position:absolute;
+    inset:-35%;
+    pointer-events:none;
+    filter: blur(20px);
+    opacity:.70;
+    background:
+            radial-gradient(circle at 25% 30%, rgba(93,38,193,.35), transparent 60%),
+            radial-gradient(circle at 80% 25%, rgba(84,192,236,.28), transparent 62%),
+            radial-gradient(circle at 60% 80%, rgba(204,46,92,.20), transparent 66%),
+            radial-gradient(circle at 25% 80%, rgba(255,161,127,.16), transparent 66%);
+    animation: mistDrift 8.5s ease-in-out infinite;
+}
+
+/* 子菜单按钮也做雾化渐变 */
+.menu-btn{
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.22);
+    box-shadow: 0 10px 30px rgba(31,38,135,0.14);
+    filter: saturate(0.85) brightness(0.94);
+    transition: transform 200ms ease, filter 200ms ease, box-shadow 200ms ease;
+}
+
+.menu-btn:hover{
+    transform: translateY(-3px);
+    filter: saturate(1.05) brightness(1.05);
+    box-shadow: 0 16px 44px rgba(31,38,135,0.18);
+}
+

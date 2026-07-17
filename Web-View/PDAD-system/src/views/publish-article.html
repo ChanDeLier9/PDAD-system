@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布医疗知识文章</title>
+    <link rel="stylesheet" href="./publish-article.css">
+    <link rel="stylesheet" href="./iconfont/font_f3bf40xattr/iconfont.css">
+</head>
+<body>
+    <div class="card">
+        <div class="card__content"></div>
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="blob blob-4"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <i class="iconfont icon-fanhui back-btn" onclick="goBack()"></i>
+            <h1>发布医疗知识文章</h1>
+        </div>
+        
+        <div class="form-container">
+            <form id="articleForm">
+                <div class="form-group">
+                    <label for="title">文章标题 *</label>
+                    <input type="text" id="title" name="title" required placeholder="请输入文章标题">
+                </div>
+                
+                <div class="form-group">
+                    <label for="author">作者姓名 *</label>
+                    <input type="text" id="doctor_name" name="doctor_name" required placeholder="请输入作者姓名">
+                </div>
+                
+                <div class="form-group">
+                    <label for="tags">文章标签 *</label>
+                    <select id="tags" name="tags" required>
+                        <option value="">请选择标签</option>
+                        <option value="抑郁症">抑郁症</option>
+                        <option value="心理健康">心理健康</option>
+                        <option value="治疗方法">治疗方法</option>
+                        <option value="预防保健">预防保健</option>
+                        <option value="康复指导">康复指导</option>
+                        <option value="药物治疗">药物治疗</option>
+                        <option value="心理咨询">心理咨询</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="content">文章内容 *</label>
+                    <textarea id="content" name="content" required placeholder="请输入文章内容，支持换行..." rows="15"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="goBack()">取消</button>
+                    <button type="submit" class="btn-submit">发布文章</button>
+                </div>
+            </form>
+        </div>
+        
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>正在发布文章...</p>
+        </div>
+    </div>
+    
+    <script src="./publish-article.js"></script>
+</body>
+</html>

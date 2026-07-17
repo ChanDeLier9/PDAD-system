@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>量表成绩详情</title>
+    <link rel="stylesheet" href="./score.css">
+    <link rel="stylesheet" href="./iconfont/font_f3bf40xattr/iconfont.css">
+    <script src="score.js" defer></script>
+</head>
+<body>
+
+<!-- 个人信息区域 -->
+<div class="myintro">
+    <i class="iconfont icon-fanhui" onClick="location.href='check.html'"></i>
+    <span><img src="../assets/touxiang.png" alt="头像"></span>
+    <div class="name1">姓名：</div>
+    <div class="name" id="patientName">NAME</div>
+    <div class="id1">ID：</div>
+    <div class="id" id="patientId">ID</div>
+    <div class="conclusion">
+        <span>结论: </span><span id="diagnosis"></span>
+    </div>
+</div>
+
+<!-- Table Header -->
+<table border="1" cellspacing="0">
+    <thead>
+    <tr>
+        <th class="test1">问题内容</th>
+        <th class="test2">选项内容</th>
+        <th class="test3">得分</th>
+    </tr>
+    </thead>
+    <tbody id="test-table-body">
+    <!-- 测试数据将动态插入这里 -->
+    </tbody>
+</table>
+
+</body>
+</html>
